@@ -252,8 +252,8 @@ def setup_security(app):
     # Security headers middleware
     app.middleware("http")(security_headers_middleware)
 
-    logger.info(f"🔒 Security configured — CORS: {config.cors_origins}")
-    logger.info(f"🔑 API key auth: enabled")
-    logger.info(f"⏱️  Rate limit: {config.rate_limit_per_minute}/min")
+    logger.info(f"[Security] configured - CORS: {config.cors_origins}")
+    logger.info(f"[Security] API key auth: enabled")
+    logger.info(f"[Security] Rate limit: {config.rate_limit_per_minute}/min")
 
     return app

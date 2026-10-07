@@ -17,8 +17,8 @@ class AtlasConfig:
         self.api_key = os.getenv("ATLAS_API_KEY", "")
         if not self.api_key:
             generated = secrets.token_urlsafe(32)
-            print(f"⚠️  ATLAS_API_KEY not set. Generated temporary key: {generated}")
-            print(f"   Set it in .env or export ATLAS_API_KEY='<your-key>'")
+            print(f"WARNING: ATLAS_API_KEY not set. Generated temporary key: {generated}")
+            print("   Set it in .env or export ATLAS_API_KEY='<your-key>'")
             self.api_key = generated
 
         # ── Ollama (Local LLM) ──
@@ -78,11 +78,11 @@ class AtlasConfig:
         """Validate config and return list of warnings/errors."""
         issues = []
         if self.debug:
-            issues.append("⚠️  Debug mode is ON — disable for production use")
+            issues.append("WARNING: Debug mode is ON - disable for production use")
         if self.port < 1024 and os.name != "nt":
-            issues.append(f"⚠️  Port {self.port} requires root on Linux/macOS")
+            issues.append(f"WARNING: Port {self.port} requires root on Linux/macOS")
         if self.privacy_mode not in ("local", "hybrid"):
-            issues.append("⚠️  ATLAS_PRIVACY must be 'local' or 'hybrid'")
+            issues.append("WARNING: ATLAS_PRIVACY must be 'local' or 'hybrid'")
         return issues
 
     def __repr__(self) -> str:

@@ -78,10 +78,10 @@ def create_app() -> FastAPI:
         issues = config.validate()
         for issue in issues:
             logger.warning(issue)
-        logger.info(f"🧠 Atlas starting — {config}")
-        logger.info(f"📁 Data: {config.data_dir}")
+        logger.info(f"[Atlas] starting - {config}")
+        logger.info(f"[Atlas] Data: {config.data_dir}")
         if config.debug:
-            logger.warning("⚠️  DEBUG MODE — do not use in production")
+            logger.warning("[Atlas] DEBUG MODE - do not use in production")
 
     return app
 
