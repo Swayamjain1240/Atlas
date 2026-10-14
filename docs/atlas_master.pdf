@@ -1,0 +1,266 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 4 /Kids [6 0 R 8 0 R 10 0 R 12 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Length 6131 >>
+stream
+1.000 1.000 1.000 rg 0 0 595 842 re f
+0.060 0.070 0.170 rg 0 795 595 47 re f
+0.360 0.290 0.770 rg 0 793 595 2 re f
+BT /F2 10 Tf 1.000 1.000 1.000 rg 1 0 0 1 54.0 813.0 Tm (ATLAS  /  MASTER PROJECT REFERENCE) Tj ET
+BT /F1 10 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 770.0 Tm (Single control file for roadmap, Duck checks and migration | v0.2) Tj ET
+0.860 0.850 0.910 RG 0.55 w 54 762 m 541 762 l S
+BT /F2 15.5 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 738.0 Tm (Atlas - Master Project Reference) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 711.0 Tm (Version: 0.2.0 | Date: 2026-10-14 | Owner repository: Swayamjain1240/Atlas) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 692.3 Tm (Control status: ACCEPTED PRODUCT/STACK DECISIONS, TARGET ARCHITECTURE; NOT A DECLARATION OF) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 679.6 Tm (IMPLEMENTATION) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 655.8999999999999 m 541 655.8999999999999 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 649.9 Tm (1. Mission and product identity) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 629.9 Tm (Atlas is a local-first AI-powered Personal Life Operating System: a privacy-preserving index of) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 617.2 Tm (user-approved personal documents, code and browser-history metadata, queried through local embeddings,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 604.5 Tm (RAG and Ollama with verifiable citations.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 585.8 Tm (Success means a user can choose data sources, index them safely, ask source-grounded questions, inspect) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 54.0 573.1 Tm (memories, manage/delete data, and use the UI offline after initial setup.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 549.3999999999996 m 541 549.3999999999996 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 543.4 Tm (2. Source-of-truth hierarchy) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 523.4 Tm (- 1. This Master Reference: decisions, scope, status, milestones, Duck protocol and change) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 510.7 Tm (control.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 496.0 Tm (- 2. Requirements: acceptance IDs and release gates \(functional, UX, security,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 483.3 Tm (non-functional\).) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 468.6 Tm (- 3. System Design: endpoint contracts, schema, lifecycle, error format and test mapping.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 453.9 Tm (- 4. Architecture: processes, responsibility boundaries, technology and deployment.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 439.2 Tm (- 5. Actual repository code and executed test evidence: ground truth for what is implemented.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 426.5 Tm (Documentation NEVER proves implementation.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 411.8 Tm (- For disagreement between these documents and implementation, raise a Duck finding before) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 399.1 Tm (changing behavior. Preserve git history.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 379.39999999999975 m 541 379.39999999999975 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 373.4 Tm (3. Fixed target stack) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 353.4 Tm (- Frontend: React 18, Vite, Tailwind CSS, Three.js and GSAP.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 338.7 Tm (- Public backend: Node.js 20+ / Express with auth, validation, rate limiting, API contracts) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 326.0 Tm (and SQLite ownership.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 311.3 Tm (- Private AI: Python 3.11+ / internal FastAPI, Ollama + llama3.2:3b, Sentence-Transformers) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 298.6 Tm (all-MiniLM-L6-v2, RAG, ChromaDB ownership.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 283.9 Tm (- Persistence: SQLite metadata/sessions/jobs; ChromaDB vectors; user-approved local files.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 269.2 Tm (- Security: local API keys, internal service authentication, strict localhost/CORS,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 256.5 Tm (validation, quotas, safe file access and dependency/secret scans.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 241.8 Tm (- Architecture label: local-first modular multi-process monolith \(single product, coordinated) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 229.1 Tm (local processes\).) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 209.39999999999986 m 541 209.39999999999986 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 203.4 Tm (4. Agreed top-level folders) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 183.4 Tm (- backend/ - Express code only after staged migration.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 168.7 Tm (- frontend/ - React/Vite UI, Three.js graph and GSAP animations; reuse existing work.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 154.0 Tm (- aiServices/ - Python AI/ingestion/retrieval stack; private loopback-only worker.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 139.3 Tm (- tests/ - backend, frontend, aiServices, integration, E2E, security and performance.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 124.6 Tm (- docs/ - these four control documents in PDF and editable Markdown formats.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 109.9 Tm (- scripts/ - setup/start/test/audit scripts.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 95.2 Tm (- data/ - local runtime-only SQLite, Chroma, caches; MUST be .gitignored. Prefer OS user-data) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 82.5 Tm (location.) Tj ET
+0.880 0.880 0.910 RG 0.55 w 54 48 m 541 48 l S
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 33.0 Tm (ATLAS / v0.2.0 / 2026-10-14 / Target design, not implemented) Tj ET
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 491.0 33.0 Tm (Page 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 6245 >>
+stream
+1.000 1.000 1.000 rg 0 0 595 842 re f
+0.060 0.070 0.170 rg 0 795 595 47 re f
+0.360 0.290 0.770 rg 0 793 595 2 re f
+BT /F2 10 Tf 1.000 1.000 1.000 rg 1 0 0 1 54.0 813.0 Tm (ATLAS  /  MASTER PROJECT REFERENCE) Tj ET
+BT /F1 10 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 770.0 Tm (Single control file for roadmap, Duck checks and migration | v0.2) Tj ET
+0.860 0.850 0.910 RG 0.55 w 54 762 m 541 762 l S
+0.830 0.810 0.950 RG 0.55 w 54 745 m 541 745 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 739.0 Tm (5. Verified repository baseline \(observed 2026-10-14\)) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 719.0 Tm (- Branch main: 11a6d8102cb0e2fb960ef3a871946101a73c30ac at review time.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 704.3 Tm (- Existing frontend React/Vite/Tailwind views: Chat, Dashboard, Timeline, Settings, Header,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 691.6 Tm (Sidebar and a Three.js particle background.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 676.9 Tm (- Existing Python FastAPI backend exposes GET /, GET /api/v1/health and GET /api/v1/status,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 664.2 Tm (plus auth/rate-limit/security helpers.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 649.5 Tm (- backend/src/ai/engine.py is a stub: retrieve returns empty list, generate returns) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 636.8 Tm (warming-up message.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 622.1 Tm (- backend/src/ingestion and backend/src/storage contain only package initializer files; no) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 609.4 Tm (functional ingestors or database implementation.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 594.7 Tm (- Chat calls POST /api/v1/query and Dashboard calls POST /api/v1/ingest, but those routes do) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 582.0 Tm (not exist in reviewed main.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 567.3 Tm (- Timeline events are mock data; Dashboard status/memories do not yet represent genuine) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 554.6 Tm (persisted AI data.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 539.9 Tm (- Git history says 18 smoke tests passed when committed, but no current executable) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 527.2 Tm (E2E/inference verification was performed during this documentation update.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 512.5 Tm (- Node/Express and aiServices are not implemented in the baseline; these documents specify) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 499.8 Tm (target changes only.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 480.09999999999934 m 541 480.09999999999934 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 474.1 Tm (6. Non-negotiable behavior) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 454.1 Tm (- Never silently upload local user content, run cloud inference, enable telemetry, or ingest) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 441.4 Tm (a new data source without consent.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 426.7 Tm (- Never delete the existing Python backend, installed models or personal data as a shortcut) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 414.0 Tm (during migration.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 399.3 Tm (- Auth and validation before ingestion, query, settings, memory access and deletion; every) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 386.6 Tm (protected API call is traceable.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 371.9 Tm (- Answer only using retrieved evidence where feasible; identify insufficient evidence;) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 359.2 Tm (citations must resolve to real indexed chunks.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 344.5 Tm (- Maintain one-viewport authenticated shell, responsive accessibility and optional reduced) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 331.8 Tm (motion.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 317.1 Tm (- Avoid changing chosen stack, high-priority requirements or scope without explicit user) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 304.4 Tm (approval.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 284.6999999999995 m 541 284.6999999999995 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 278.7 Tm (7. Development phases \(dependencies and exit gates\)) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 253.7 Tm (Phase 0 - Baseline recovery / branch safety) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 235.7 Tm (- Confirm clone, clean git status, env examples and dependency installation; archive v0.1) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 223.0 Tm (baseline via Git history/tag or named snapshot.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 208.3 Tm (- Smoke-test existing FastAPI health/status and React build; record failures honestly. No) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 195.6 Tm (schema/data deletion.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 180.9 Tm (- Exit: baseline and rollback path documented.) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 161.2 Tm (Phase 1 - Folder migration and Express foundation) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 143.2 Tm (- Create target folders; add Express app, security, config, routing, common errors, SQLite) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 130.5 Tm (migration skeleton.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 115.8 Tm (- Route frontend dev proxy through Express; Python legacy backend remains available until) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 103.1 Tm (internal AI worker is ready.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 88.4 Tm (- Exit: React + Express health/status, invalid auth/CORS tests, local-only binding.) Tj ET
+0.880 0.880 0.910 RG 0.55 w 54 48 m 541 48 l S
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 33.0 Tm (ATLAS / v0.2.0 / 2026-10-14 / Target design, not implemented) Tj ET
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 491.0 33.0 Tm (Page 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 5895 >>
+stream
+1.000 1.000 1.000 rg 0 0 595 842 re f
+0.060 0.070 0.170 rg 0 795 595 47 re f
+0.360 0.290 0.770 rg 0 793 595 2 re f
+BT /F2 10 Tf 1.000 1.000 1.000 rg 1 0 0 1 54.0 813.0 Tm (ATLAS  /  MASTER PROJECT REFERENCE) Tj ET
+BT /F1 10 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 770.0 Tm (Single control file for roadmap, Duck checks and migration | v0.2) Tj ET
+0.860 0.850 0.910 RG 0.55 w 54 762 m 541 762 l S
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 745.0 Tm (Phase 2 - Python AI worker and local inference) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 727.0 Tm (- Create aiServices with internal FastAPI auth, Ollama client and embedding model loader;) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 714.3 Tm (simple mock query works.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 699.6 Tm (- Record model availability offline after downloads, version and CPU/GPU runtime behavior.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 684.9 Tm (- Exit: internal-only health, key rejection, embedding dimension = 384 and deterministic) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 672.2 Tm (mocked Ollama test.) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 652.5 Tm (Phase 3 - Ingestion and persistent storage) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 634.5 Tm (- Implement explicit consent, file/PDF/DOCX parsers, safe browser-history metadata reader,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 621.8 Tm (chunking, SQLite and Chroma IDs, ingestion jobs.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 607.1 Tm (- Implement safe retries/reconciliation, idempotent re-index and deletions.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 592.4 Tm (- Exit: restart-safe import, search, stats, traceable sources and cleanup tests.) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 572.7 Tm (Phase 4 - End-to-end RAG and chat) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 554.7 Tm (- Wire query, retrieval, context assembly, Ollama answer and citations; persist optional chat) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 542.0 Tm (sessions.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 527.3 Tm (- Handle empty index, model unavailable, timeouts and prompt-injection attempts.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 512.6 Tm (- Exit: repeatable React -> Express -> Python -> Chroma -> Ollama query and citation E2E.) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 492.9 Tm (Phase 5 - Polished accessible UI) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 474.9 Tm (- Add GSAP motion with cleanup/reduced-motion; turn Three.js into real data-driven graph;) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 462.2 Tm (finish settings, timeline and dashboard.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 447.5 Tm (- Exit: one-viewport behavior and responsive/mobile accessibility, zero placeholder) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 434.8 Tm (stats/events.) Tj ET
+BT /F2 10.2 Tf 0.360 0.290 0.770 rg 1 0 0 1 54.0 415.1 Tm (Phase 6 - Hardening and release) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 397.1 Tm (- Perform unit, integration, contract, E2E, security and load tests; run offline smoke tests.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 382.4 Tm (- Benchmark against published hardware envelope and document deviations. Verify) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 369.7 Tm (installation/packaging docs.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 355.0 Tm (- Exit: no critical security/functional failures, backups/restores exercised, release notes) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 342.3 Tm (and decision log current.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 322.59999999999957 m 541 322.59999999999957 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 316.6 Tm (8. Duck checkpoint protocol) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 296.6 Tm (- Trigger word: Duck.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 281.9 Tm (- Review the current git branch/head, staged/uncommitted changes, completed phase exit) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 269.2 Tm (criteria, security controls and docs consistency.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 254.5 Tm (- Output must include: completed work, remaining work, blockers, regression/security risks,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 241.8 Tm (decisions required, next safe step and GO / NO-GO.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 227.1 Tm (- Never infer "complete" from a commit message, placeholder route, mock data or) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 214.4 Tm (documentation.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 199.7 Tm (- Before moving to a new phase, require evidence: tests + manual user-flow demonstration + no) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 187.0 Tm (unresolved critical issues.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 167.29999999999967 m 541 167.29999999999967 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 161.3 Tm (9. Work rules and engineering quality) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 141.3 Tm (- Small, meaningful commits. Prefer feature branches and PR review; direct main update only) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 128.6 Tm (on explicit user request.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 113.9 Tm (- Update requirements/architecture/design if changing interfaces, data schema, consent policy) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 101.2 Tm (or scope.) Tj ET
+0.880 0.880 0.910 RG 0.55 w 54 48 m 541 48 l S
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 33.0 Tm (ATLAS / v0.2.0 / 2026-10-14 / Target design, not implemented) Tj ET
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 491.0 33.0 Tm (Page 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 4112 >>
+stream
+1.000 1.000 1.000 rg 0 0 595 842 re f
+0.060 0.070 0.170 rg 0 795 595 47 re f
+0.360 0.290 0.770 rg 0 793 595 2 re f
+BT /F2 10 Tf 1.000 1.000 1.000 rg 1 0 0 1 54.0 813.0 Tm (ATLAS  /  MASTER PROJECT REFERENCE) Tj ET
+BT /F1 10 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 770.0 Tm (Single control file for roadmap, Duck checks and migration | v0.2) Tj ET
+0.860 0.850 0.910 RG 0.55 w 54 762 m 541 762 l S
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 750.0 Tm (- For any file changes, specify CREATE or UPDATE with exact path before implementation; do) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 737.3 Tm (not generate duplicate masters.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 722.6 Tm (- Test first for bug reproductions; retain regression test with every fix; no ignored test) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 709.9 Tm (failures.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 695.2 Tm (- Keep secrets/data out of Git. Use env examples with no real credentials. Do not expose) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 682.5 Tm (private user paths in README/screenshots.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 667.8 Tm (- Preserve original v0.1 PDFs in git history; replace current docs with v0.2, with versions) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 655.1 Tm (and change rationale.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 635.3999999999996 m 541 635.3999999999996 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 629.4 Tm (10. Open risks and explicit decisions) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 609.4 Tm (- Privacy: browser-accessible local endpoints need real credentials and origin/Host controls;) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 596.7 Tm (localhost alone is insufficient.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 582.0 Tm (- Cross-store consistency: SQLite and ChromaDB cannot share an atomic transaction; reconcile) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 569.3 Tm (partial writes/deletes.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 554.6 Tm (- Performance: p95 <2s full Ollama answer may not be realistic on CPU-only hardware; measure,) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 541.9 Tm (do not promise.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 527.2 Tm (- Deployment: model downloads may require internet at first install; package fonts and assets) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 514.5 Tm (to enable truly offline runtime.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 499.8 Tm (- Storage: define backup encryption, OS-specific user-data path and resource quotas before) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 487.1 Tm (release.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 472.4 Tm (- Product: email, cloud sync, MCP, autonomous agents, Tauri, team mode and calendar are OUT) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 459.7 Tm (OF SCOPE until approved.) Tj ET
+0.830 0.810 0.950 RG 0.55 w 54 439.9999999999994 m 541 439.9999999999994 l S
+BT /F2 12.6 Tf 0.120 0.120 0.350 rg 1 0 0 1 54.0 434.0 Tm (11. Immediate next action) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 414.0 Tm (- The documentation update is docs-only; the code in main remains the existing v0.1 scaffold.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 399.3 Tm (- Start Phase 0 review and clone verification, then implement Phase 1 Express foundation) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 386.6 Tm (without deleting reusable Python modules.) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 371.9 Tm (- Verify that the three old v0.1 PDF documents are replaced and a fourth master exists in) Tj ET
+BT /F1 9 Tf 0.160 0.190 0.280 rg 1 0 0 1 62.0 359.2 Tm (docs/. Treat these as design baselines, not passing implementation.) Tj ET
+0.880 0.880 0.910 RG 0.55 w 54 48 m 541 48 l S
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 54.0 33.0 Tm (ATLAS / v0.2.0 / 2026-10-14 / Target design, not implemented) Tj ET
+BT /F1 7.4 Tf 0.410 0.440 0.520 rg 1 0 0 1 491.0 33.0 Tm (Page 4) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 11 0 R >>
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000135 00000 n 
+0000000205 00000 n 
+0000000280 00000 n 
+0000006462 00000 n 
+0000006598 00000 n 
+0000012894 00000 n 
+0000013030 00000 n 
+0000018976 00000 n 
+0000019113 00000 n 
+0000023277 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+23415
+%%EOF
