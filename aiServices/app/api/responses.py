@@ -7,7 +7,7 @@ import time
 from typing import Any
 from uuid import uuid4
 
-from fastapi import Request
+from fastapi import HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
@@ -91,6 +91,17 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
             "The request failed validation",
             validation_details(exc),
         ),
+    )
+
+
+async def http_error_handler(request: Request, exc: HTTPException):
+    detail = exc.detail if isinstance(exc.detail, dict) else None
+    code = detail.get("code", "HTTP_ERROR") if detail else "HTTP_ERROR"
+    message = detail.get("message", "Request failed") if detail else "Request failed"
+    return JSONResponse(
+        status_code=exc.status_code,
+        content=failure_response(request, code, message),
+        headers=exc.headers,
     )
 
 
