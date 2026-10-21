@@ -6,5 +6,20 @@
   "engines": {
     "node": ">=20"
   },
-  "description": "Reserved Node.js/Express gateway boundary for Atlas; implementation is scheduled for B.1."
+  "description": "Node.js/Express public gateway for Atlas.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test ../tests/backend/b1/*.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.0.3",
+    "dotenv": "18.0.8",
+    "express": "5.3.0",
+    "helmet": "8.3.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "supertest": "7.3.1"
+  }
 }
