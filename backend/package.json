@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test ../tests/backend/b1/*.test.js"
+    "test": "node --test ../tests/backend/b1/*.test.js ../tests/backend/b2/*.test.js"
   },
   "dependencies": {
     "better-sqlite3": "13.0.3",
