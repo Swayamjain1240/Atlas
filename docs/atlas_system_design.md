@@ -19,8 +19,9 @@ Date: 2026-10-14 | Repository: Swayamjain1240/Atlas | Related: Architecture, Req
 - Route -> validator -> controller -> service -> SQLite or Python client. No database operations in controllers.
 - Module groups: query, ingestion, memory, history, stats, settings, health and private AI bridge.
 ### 2.3 Python AI worker
-- FastAPI internal endpoints: POST /internal/embed, /internal/ingest, /internal/search, /internal/generate and GET /internal/health (exact shape to be finalized at implementation).
-- Modules: parsers, chunker, embedding cache, Chroma adapter, retrieval, prompt assembly, Ollama adapter.
+- B.2 FastAPI internal endpoints: authenticated GET /internal/health, POST /internal/embed with `{texts:[string]}`, and POST /internal/generate with `{prompt:string,system?:string}`.
+- B.2 modules: validated worker configuration, internal bearer authentication, Sentence-Transformers embedding adapter and bounded Ollama adapter.
+- Later B.3-B.5 endpoints add ingestion, search, retrieval and persistence only after their consent/data contracts are implemented.
 - Internal API always authenticates; never accept arbitrary local paths from untrusted callers without allowlist/consent.
 
 ## 3. SQLite schema (proposed)

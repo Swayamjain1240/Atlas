@@ -4,8 +4,8 @@ Atlas is a local-first Personal Life Operating System for indexing user-approved
 personal content, retrieving relevant evidence and eventually answering
 source-grounded questions with local models. The repository is in a staged
 migration: the verified Express gateway is now the B.1 public-backend foundation,
-while the legacy FastAPI service remains preserved and the private Python worker
-is prepared for B.2.
+the authenticated B.2 private Python worker is implemented, and the legacy
+FastAPI service remains preserved during the remaining data/RAG migration.
 
 ## Current status
 
@@ -14,7 +14,8 @@ is prepared for B.2.
 | A.1 repository audit and rollback baseline | Complete and verified |
 | A.2 legacy migration and folder boundaries | Complete for the staged boundary move |
 | Express public gateway | B.1 foundation complete and verified |
-| Private AI worker, embeddings, ChromaDB and Ollama RAG | Planned for B.2–B.5 |
+| Private AI worker and Express bridge | B.2 worker/bridge foundation complete; local model readiness pending |
+| ChromaDB, ingestion and Ollama RAG | Planned for B.3–B.5 |
 | React data-backed screens and functional graph | Existing scaffold; integration planned for B.6 |
 | Full release, security, accessibility and performance gates | Planned for B.7 |
 
@@ -32,7 +33,8 @@ atlas/
 │   ├── server.js              # Loopback server entrypoint
 │   └── legacy_fastapi/         # Preserved v0.1 public Python service
 ├── aiServices/
-│   └── app/                    # Reserved private Python worker modules
+│   ├── main.py                 # Private loopback worker entrypoint
+│   └── app/                    # Worker config, auth, embeddings and LLM adapters
 ├── frontend/                   # React/Vite/Tailwind/Three.js scaffold
 ├── tests/
 │   ├── backend/legacy_fastapi/ # Preserved 18-test FastAPI smoke suite
@@ -58,7 +60,7 @@ atlas/
 
 - Python 3.11+
 - Node.js 20+ for the target gateway/frontend work
-- Ollama is required only for the future local AI workflow
+- Ollama is required for local generation.
 
 The service-specific files are `backend/.env`, `frontend/.env` and
 `aiServices/.env`. They are ignored by Git and contain separate settings for
@@ -72,7 +74,21 @@ npm start
 The gateway binds to `127.0.0.1:8741` by default. `GET /api/v1/health` is a
 public liveness check; `GET /api/v1/status` requires the bearer token from
 `backend/.env`. The gateway owns SQLite metadata and schema migrations but does
-not yet provide ingestion or AI routes.
+not yet provide ingestion, query or memory routes.
+
+## Run the private AI worker
+
+```bash
+python -m pip install -r aiServices/requirements.txt
+python -m aiServices.main
+```
+
+The worker binds to `127.0.0.1:8750` and requires the separate internal token
+from `aiServices/.env`. It exposes authenticated `/internal/health`,
+`/internal/embed`, and `/internal/generate` endpoints for the Express bridge.
+Sentence-Transformers and Ollama must be installed/configured locally before
+model readiness can become `ready`; the worker reports unavailable dependencies
+explicitly.
 
 ## Run the preserved legacy service
 
@@ -101,7 +117,7 @@ npm run dev
 ```
 
 The Vite proxy points at the B.1 Express gateway on port 8741. Frontend query
-and ingestion routes remain future B.2-B.6 work.
+and ingestion routes remain future B.3-B.6 work.
 
 ## Tests and checks
 
@@ -135,8 +151,8 @@ npm run build
   control documents.
 - `backend/` owns public authentication, authorization, validation and SQLite
   writes in the B.1 foundation.
-- `aiServices/` will own private embeddings, ingestion, retrieval, ChromaDB and
-  Ollama calls after B.2–B.5.
+- `aiServices/` owns private embedding and Ollama adapters in B.2; ingestion,
+  retrieval and ChromaDB ownership are added in B.3-B.5.
 - `backend/.env`, `frontend/.env`, `aiServices/.env`, `data/`, `.atlas/` and
   credential files are ignored by Git.
 - No source or personal data was deleted during A.1 or A.2.
@@ -145,7 +161,7 @@ npm run build
 
 The approved roadmap and acceptance criteria are in `docs/atlas_master.md`,
 `docs/atlas_architecture.md`, `docs/atlas_system_design.md` and
-`docs/atlas_requirements.md`. Do not remove the legacy service or start B.2
+`docs/atlas_requirements.md`. Do not remove the legacy service or start B.3
 implementation until the next Duck checkpoint and explicit phase authorization.
 
 ## License

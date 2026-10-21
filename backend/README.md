@@ -1,6 +1,7 @@
 # Atlas backend
 
-This directory contains the B.1 Node.js/Express public gateway foundation.
+This directory contains the B.1 Node.js/Express public gateway foundation and
+the B.2 private-worker bridge.
 It binds to loopback by default, validates its environment, authenticates
 protected routes, enforces exact-origin CORS and rate limits, and owns the
 SQLite metadata migration foundation.
@@ -27,6 +28,7 @@ starting the service.
 - `GET /api/v1/status` — authenticated component status; send
   `Authorization: Bearer <ATLAS_API_KEY>`.
 
-Ingestion, query, memory and AI-worker routes remain future B.2-B.5 work. The
-legacy FastAPI service remains at `backend/legacy_fastapi/` until the replacement
-workflow is verified.
+The authenticated status response probes the private AI worker when
+`AI_SERVICE_INTERNAL_TOKEN` is configured. Ingestion, query, memory and RAG
+routes remain future B.3-B.5 work. The legacy FastAPI service remains at
+`backend/legacy_fastapi/` until the replacement workflow is verified.

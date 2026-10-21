@@ -154,7 +154,7 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - `aiServices/app/` now reserves the private Python worker module groups. The legacy AI engine is a documented placeholder and was not copied or promoted as working functionality.
 - Top-level `tests/` boundaries and the Git-ignored `data/` runtime boundary were introduced. No source, model, personal data or legacy behavior was deleted.
 - Verified A.2 checks: `python -m pytest tests/backend/legacy_fastapi/ -v` passed 18 tests; the compatibility command `python -m pytest backend/tests/ -v` passed 18 tests; Python compilation, the pre-commit script and non-PDF whitespace checks passed.
-- A.2 exit status: complete for the staged directory and legacy-preservation boundary. The B.1 public gateway is implemented separately below; private AI worker behavior, ingestion, RAG, frontend integration and release gates remain future work in B.2-B.7.
+- A.2 exit status: complete for the staged directory and legacy-preservation boundary. The B.1 public gateway and B.2 worker foundation are implemented separately below; persistent memory, ingestion, RAG, frontend integration and release gates remain future work in B.3-B.7.
 
 ## 13. Part B.1 implementation record
 - B.1 was authorized after the owner requested completion with five to seven meaningful commits and a push to GitHub `main`.
@@ -163,8 +163,19 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - `backend/src/database/*` provides the Node-owned SQLite migration runner, WAL/foreign-key setup, integrity status and the initial sources, memories, jobs, chat, settings and schema-migrations tables.
 - `backend/src/routes/*`, `backend/src/app.js` and `backend/server.js` provide the public health endpoint and authenticated status endpoint on loopback with the standard versioned response contract.
 - Verified B.1 tests: `npm test` passed 9 Node tests covering configuration failure modes, migration idempotence, health/status contracts, auth, secret non-disclosure, host/origin checks, rate limiting, safe JSON errors and unknown routes.
-- B.1 exit status: complete for the secure gateway foundation. Query, ingestion, private Python communication, ChromaDB, RAG, frontend data integration and release gates remain B.2-B.7 work.
+- B.1 exit status: complete for the secure gateway foundation. Query, ingestion, ChromaDB, RAG, frontend data integration and release gates remain B.3-B.7 work; B.2 private-worker communication is recorded below.
 
-## 14. Immediate next action
+## 14. Part B.2 implementation record
+- B.2 was authorized after the owner requested the private AI worker implementation in ten meaningful commits and a push to GitHub `main`.
+- `aiServices/app/config/settings.py` validates the separate internal token, loopback binding, local Ollama URL, bounded timeouts, batch/text limits and the required 384-dimensional embedding contract without generating fallback secrets.
+- `aiServices/app/api/*` provides authenticated internal requests, request IDs, standard versioned responses, validation errors and safe failure handling. Public docs and CORS are disabled by default.
+- `aiServices/app/embeddings/provider.py` lazily loads Sentence-Transformers, validates vector dimensions and finite values, and reports missing packages/model readiness without fake production embeddings.
+- `aiServices/app/llm/ollama.py` provides local `/api/tags` readiness and `/api/generate` calls with bounded timeouts, cancellation propagation and safe unavailable/model/timeout errors.
+- `/internal/health`, `/internal/embed` and `/internal/generate` are authenticated worker endpoints. `backend/src/services/ai-client.js` forwards the separate token with abort-based timeouts and exposes worker readiness through authenticated `/api/v1/status`.
+- Verified B.2 tests: 11 Python worker tests and 12 Node B.1+B.2 tests passed; legacy Python regression remains covered by the existing 36-test suite.
+- B.2 exit status: implementation complete for the authenticated worker and Express bridge contracts. Local Sentence-Transformers/Torch packages, model weights and Ollama are not installed in this environment, so real model readiness/inference remains explicitly pending runtime setup and must not be claimed from mocked tests.
+
+## 15. Immediate next action
 - Preserve the legacy FastAPI service until the replacement workflow is verified.
-- Run the next Duck checkpoint before beginning B.2; do not silently advance into AI-worker implementation.
+- Install and verify the local Sentence-Transformers model and Ollama runtime before claiming end-to-end local inference.
+- Run the next Duck checkpoint before beginning B.3; do not silently advance into persistence/ingestion implementation.
