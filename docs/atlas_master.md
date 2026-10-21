@@ -150,13 +150,21 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - A.2 was authorized on 2026-10-21 after the Duck checkpoint reviewed the current Git state, rollback bundle, documentation, security gaps and executable evidence.
 - The legacy public FastAPI service and its dependency file moved to `backend/legacy_fastapi/`; its 18-test smoke suite moved to `tests/backend/legacy_fastapi/`.
 - The former `backend/tests/` path remains as a compatibility wrapper so the pre-A.2 test command still exercises the canonical suite.
-- `backend/src/` now reserves the Node.js/Express gateway module groups from the approved target tree; `backend/package.json` records the Node 20+ boundary without implementing B.1.
+- `backend/src/` now contains the Node.js/Express gateway configuration, security, route, middleware, utility and database foundations; `backend/package.json` records the Node 20+ runtime.
 - `aiServices/app/` now reserves the private Python worker module groups. The legacy AI engine is a documented placeholder and was not copied or promoted as working functionality.
 - Top-level `tests/` boundaries and the Git-ignored `data/` runtime boundary were introduced. No source, model, personal data or legacy behavior was deleted.
 - Verified A.2 checks: `python -m pytest tests/backend/legacy_fastapi/ -v` passed 18 tests; the compatibility command `python -m pytest backend/tests/ -v` passed 18 tests; Python compilation, the pre-commit script and non-PDF whitespace checks passed.
-- A.2 exit status: complete for the staged directory and legacy-preservation boundary. Express implementation, private AI worker behavior, persistence, ingestion, frontend integration and release gates remain future work in B.1-B.7.
+- A.2 exit status: complete for the staged directory and legacy-preservation boundary. The B.1 public gateway is implemented separately below; private AI worker behavior, ingestion, RAG, frontend integration and release gates remain future work in B.2-B.7.
 
-## 13. Immediate next action
-- Preserve the A.2 working tree for review; do not commit or push without explicit authorization.
-- Resolve the recorded runtime prerequisites before claiming frontend or local-inference behavior.
-- Run the next Duck checkpoint before beginning B.1; do not silently advance into rebuild implementation.
+## 13. Part B.1 implementation record
+- B.1 was authorized after the owner requested completion with five to seven meaningful commits and a push to GitHub `main`.
+- `backend/src/config/env.js` validates required credentials, loopback binding, exact CORS origins, ports, limits and local data paths without generating fallback secrets.
+- `backend/src/middleware/*` provides request IDs, safe errors, Helmet headers, host/origin checks, constant-time bearer authentication, scope authorization, validation and bounded rate limiting.
+- `backend/src/database/*` provides the Node-owned SQLite migration runner, WAL/foreign-key setup, integrity status and the initial sources, memories, jobs, chat, settings and schema-migrations tables.
+- `backend/src/routes/*`, `backend/src/app.js` and `backend/server.js` provide the public health endpoint and authenticated status endpoint on loopback with the standard versioned response contract.
+- Verified B.1 tests: `npm test` passed 9 Node tests covering configuration failure modes, migration idempotence, health/status contracts, auth, secret non-disclosure, host/origin checks, rate limiting, safe JSON errors and unknown routes.
+- B.1 exit status: complete for the secure gateway foundation. Query, ingestion, private Python communication, ChromaDB, RAG, frontend data integration and release gates remain B.2-B.7 work.
+
+## 14. Immediate next action
+- Preserve the legacy FastAPI service until the replacement workflow is verified.
+- Run the next Duck checkpoint before beginning B.2; do not silently advance into AI-worker implementation.

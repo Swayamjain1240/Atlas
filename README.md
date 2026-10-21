@@ -3,8 +3,9 @@
 Atlas is a local-first Personal Life Operating System for indexing user-approved
 personal content, retrieving relevant evidence and eventually answering
 source-grounded questions with local models. The repository is in a staged
-migration: the existing FastAPI service is preserved while the approved
-Express gateway and private Python worker are prepared.
+migration: the verified Express gateway is now the B.1 public-backend foundation,
+while the legacy FastAPI service remains preserved and the private Python worker
+is prepared for B.2.
 
 ## Current status
 
@@ -12,7 +13,7 @@ Express gateway and private Python worker are prepared.
 |---|---|
 | A.1 repository audit and rollback baseline | Complete and verified |
 | A.2 legacy migration and folder boundaries | Complete for the staged boundary move |
-| Express public gateway | Planned for B.1 |
+| Express public gateway | B.1 foundation complete and verified |
 | Private AI worker, embeddings, ChromaDB and Ollama RAG | Planned for B.2–B.5 |
 | React data-backed screens and functional graph | Existing scaffold; integration planned for B.6 |
 | Full release, security, accessibility and performance gates | Planned for B.7 |
@@ -26,8 +27,9 @@ the executable code and test results are the source of truth.
 ```text
 atlas/
 ├── backend/
-│   ├── src/                    # Reserved Node.js/Express gateway modules
-│   ├── package.json            # Node 20+ boundary metadata
+│   ├── src/                    # Express config, security, routes, database
+│   ├── package.json            # Node 20+ gateway package
+│   ├── server.js              # Loopback server entrypoint
 │   └── legacy_fastapi/         # Preserved v0.1 public Python service
 ├── aiServices/
 │   └── app/                    # Reserved private Python worker modules
@@ -50,7 +52,7 @@ atlas/
 └── README.md
 ```
 
-## Run the preserved legacy service
+## Run the Express gateway
 
 ### Prerequisites
 
@@ -60,7 +62,21 @@ atlas/
 
 The service-specific files are `backend/.env`, `frontend/.env` and
 `aiServices/.env`. They are ignored by Git and contain separate settings for
-each process. From `backend/legacy_fastapi/`:
+each process. Start the B.1 gateway from `backend/`:
+
+```bash
+npm install
+npm start
+```
+
+The gateway binds to `127.0.0.1:8741` by default. `GET /api/v1/health` is a
+public liveness check; `GET /api/v1/status` requires the bearer token from
+`backend/.env`. The gateway owns SQLite metadata and schema migrations but does
+not yet provide ingestion or AI routes.
+
+## Run the preserved legacy service
+
+From `backend/legacy_fastapi/`:
 
 ```bash
 python -m venv .venv
@@ -84,11 +100,16 @@ npm install
 npm run dev
 ```
 
-The Vite proxy currently points at the preserved service on port 8741. The
-Express gateway will become the public API owner in B.1; no frontend proxy or
-API contract switch is made in A.2.
+The Vite proxy points at the B.1 Express gateway on port 8741. Frontend query
+and ingestion routes remain future B.2-B.6 work.
 
 ## Tests and checks
+
+Run the B.1 gateway tests from `backend/`:
+
+```bash
+npm test
+```
 
 Run the preserved backend smoke suite from the repository root:
 
@@ -112,8 +133,8 @@ npm run build
 - The legacy service retains its v0.1 authentication, validation, CORS, rate
   limiting and security-header helpers, with known target gaps recorded in the
   control documents.
-- `backend/` will own public authentication, authorization, validation and
-  SQLite writes after B.1.
+- `backend/` owns public authentication, authorization, validation and SQLite
+  writes in the B.1 foundation.
 - `aiServices/` will own private embeddings, ingestion, retrieval, ChromaDB and
   Ollama calls after B.2–B.5.
 - `backend/.env`, `frontend/.env`, `aiServices/.env`, `data/`, `.atlas/` and
@@ -124,7 +145,7 @@ npm run build
 
 The approved roadmap and acceptance criteria are in `docs/atlas_master.md`,
 `docs/atlas_architecture.md`, `docs/atlas_system_design.md` and
-`docs/atlas_requirements.md`. Do not remove the legacy service or start B.1
+`docs/atlas_requirements.md`. Do not remove the legacy service or start B.2
 implementation until the next Duck checkpoint and explicit phase authorization.
 
 ## License
