@@ -1,55 +1,82 @@
-# 🧠 Atlas — Personal Life Operating System
+# Atlas — Personal Life Operating System
 
-> **Your local-first, AI-powered memory for everything digital.**
+Atlas is a local-first Personal Life Operating System for indexing user-approved
+personal content, retrieving relevant evidence and eventually answering
+source-grounded questions with local models. The repository is in a staged
+migration: the existing FastAPI service is preserved while the approved
+Express gateway and private Python worker are prepared.
 
-Atlas indexes your files, browser history, messages, email, and code — then lets you ask anything in natural language. **All data stays on your machine. Zero cloud.**
+## Current status
 
----
+| Area | Status |
+|---|---|
+| A.1 repository audit and rollback baseline | Complete and verified |
+| A.2 legacy migration and folder boundaries | Complete for the staged boundary move |
+| Express public gateway | Planned for B.1 |
+| Private AI worker, embeddings, ChromaDB and Ollama RAG | Planned for B.2–B.5 |
+| React data-backed screens and functional graph | Existing scaffold; integration planned for B.6 |
+| Full release, security, accessibility and performance gates | Planned for B.7 |
 
-## ✨ Features
+The current implementation does **not** yet provide the target query, ingestion,
+persistence or RAG workflow. Documentation describes the target architecture;
+the executable code and test results are the source of truth.
 
-| Feature | Status |
-|---------|--------|
-| 🔍 **Semantic Search** — find by meaning, not keywords | ✅ v0.1 |
-| 📄 **File Ingestion** — PDF, DOCX, code, markdown, text | ✅ v0.1 |
-| 🌐 **Browser History** — Chrome, Edge, Brave | ✅ v0.1 |
-| 🧠 **Local LLM** — Ollama (Llama 3.2, Mistral, etc.) | ✅ v0.1 |
-| 🎨 **3D Knowledge Graph** — Three.js interactive visualization | ✅ v0.1 |
-| 🔒 **Fully Offline** — no data ever leaves your machine | ✅ v0.1 |
-| 📧 Email Ingestion | 🔜 v0.2 |
-| 🤖 Autonomous Agents | 🔜 v0.2 |
+## Repository layout
 
----
+```text
+atlas/
+├── backend/
+│   ├── src/                    # Reserved Node.js/Express gateway modules
+│   ├── package.json            # Node 20+ boundary metadata
+│   └── legacy_fastapi/         # Preserved v0.1 public Python service
+├── aiServices/
+│   └── app/                    # Reserved private Python worker modules
+├── frontend/                   # React/Vite/Tailwind/Three.js scaffold
+├── tests/
+│   ├── backend/legacy_fastapi/ # Preserved 18-test FastAPI smoke suite
+│   ├── frontend/
+│   ├── aiServices/
+│   ├── integration/
+│   ├── e2e/
+│   ├── security/
+│   └── performance/
+├── docs/                       # Architecture, requirements, design and master controls
+├── scripts/                    # Development and audit scripts
+├── data/                       # Local runtime data; ignored by Git
+├── backend/.env.example        # Backend template; backend/.env is local-only
+├── frontend/.env.example       # Frontend template; frontend/.env is local-only
+├── aiServices/.env.example     # AI worker template; aiServices/.env is local-only
+├── .env.example                # Index of the service-specific templates
+└── README.md
+```
 
-## 🚀 Quick Start
+## Run the preserved legacy service
 
 ### Prerequisites
 
-- **Python 3.11+**
-- **Node.js 18+**
-- **Ollama** (for local LLM) — [install guide](https://ollama.ai)
+- Python 3.11+
+- Node.js 20+ for the target gateway/frontend work
+- Ollama is required only for the future local AI workflow
 
-### 1. Clone & Setup
+The service-specific files are `backend/.env`, `frontend/.env` and
+`aiServices/.env`. They are ignored by Git and contain separate settings for
+each process. From `backend/legacy_fastapi/`:
 
 ```bash
-git clone https://github.com/Swayamjain1240/Atlas.git
-cd Atlas
-
-# Backend
-cd backend
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp ../.env.example .env   # Edit .env with your API key
-
-# Pull a local LLM
-ollama pull llama3.2:3b
-
-# Start the server
+cp ../.env.example ../.env        # Windows: copy ..\.env.example ..\.env
+# The current legacy service reads process environment variables; load/export
+# backend/.env before starting it. Set ATLAS_API_KEY before use.
 python -m src.main
 ```
 
-### 2. Start Frontend
+The preserved service binds to `127.0.0.1:8741` by default and exposes the
+legacy health, status and root endpoints. It remains available until the
+Express replacement has verified contract and regression coverage.
+
+## Frontend
 
 ```bash
 cd frontend
@@ -57,84 +84,49 @@ npm install
 npm run dev
 ```
 
-### 3. Open Atlas
+The Vite proxy currently points at the preserved service on port 8741. The
+Express gateway will become the public API owner in B.1; no frontend proxy or
+API contract switch is made in A.2.
 
-Navigate to **http://localhost:5173**
+## Tests and checks
 
-Set your API key in Settings (found in `backend/.env` or server startup output).
+Run the preserved backend smoke suite from the repository root:
 
----
-
-## 🏗️ Architecture
-
-```
-atlas/
-├── backend/                    # Python + FastAPI
-│   ├── src/
-│   │   ├── main.py            # Server entry + routes
-│   │   ├── config.py          # Env validation + config
-│   │   ├── security.py        # Auth, CORS, rate limit, sanitization
-│   │   ├── api/               # API routes & response models
-│   │   │   ├── __init__.py    # Response helpers
-│   │   │   └── routes.py      # REST endpoints
-│   │   └── ai/                # AI Engine (RAG)
-│   │       └── engine.py      # Embedding, retrieval, generation
-│   ├── ingestion/             # Data ingestion pipeline
-│   │   ├── file_ingestor.py   # File system watcher
-│   │   └── browser_ingestor.py# Chrome history reader
-│   └── requirements.txt
-│
-├── frontend/                   # React + Vite + Tailwind
-│   ├── src/
-│   │   ├── App.jsx            # Root layout
-│   │   ├── components/
-│   │   │   ├── Chat.jsx       # Chat interface
-│   │   │   ├── Dashboard.jsx  # Stats & controls
-│   │   │   ├── Timeline.jsx   # History view
-│   │   │   ├── Graph3D.jsx    # 3D knowledge graph
-│   │   │   ├── Header.jsx     # Top bar
-│   │   │   ├── Sidebar.jsx    # Navigation
-│   │   │   └── Settings.jsx   # API key & config
-│   │   └── styles/globals.css
-│   └── package.json
-│
-├── docs/                       # Documentation
-│   ├── atlas_architecture.pdf
-│   ├── atlas_system_design.pdf
-│   └── atlas_requirements.pdf
-│
-├── .env.example                # Environment template
-├── .gitignore
-└── README.md
+```bash
+python -m pytest tests/backend/legacy_fastapi/ -v
+python -m compileall -q backend/legacy_fastapi/src
+sh scripts/pre-commit-hook.sh
 ```
 
----
+The frontend build requires installed npm dependencies:
 
-## 🔒 Security
+```bash
+cd frontend
+npm run build
+```
 
-| Measure | Implementation |
-|---------|---------------|
-| **API Key Auth** | Bearer token in Authorization header |
-| **Input Sanitization** | XSS patterns blocked, length limits |
-| **CORS** | Restricted to localhost only |
-| **Rate Limiting** | 100 requests/minute per IP |
-| **Security Headers** | CSP, X-Frame-Options, HSTS, etc. |
-| **Secret Scanning** | Pre-commit hook checks for exposed keys |
-| **Local-First** | No data sent to external services |
+## Security and privacy boundary
 
----
+- Local user content is not uploaded or sent to hosted inference by the target
+  design.
+- The legacy service retains its v0.1 authentication, validation, CORS, rate
+  limiting and security-header helpers, with known target gaps recorded in the
+  control documents.
+- `backend/` will own public authentication, authorization, validation and
+  SQLite writes after B.1.
+- `aiServices/` will own private embeddings, ingestion, retrieval, ChromaDB and
+  Ollama calls after B.2–B.5.
+- `backend/.env`, `frontend/.env`, `aiServices/.env`, `data/`, `.atlas/` and
+  credential files are ignored by Git.
+- No source or personal data was deleted during A.1 or A.2.
 
-## 🛠️ Tech Stack
+## Migration guardrails
 
-| Layer | Technology |
-|-------|-----------|
-| **Backend** | Python, FastAPI, Uvicorn |
-| **AI/ML** | Sentence-Transformers, ChromaDB, Ollama |
-| **Frontend** | React 18, Vite, Tailwind CSS, Three.js |
-| **Storage** | ChromaDB (vectors), SQLite (metadata) |
+The approved roadmap and acceptance criteria are in `docs/atlas_master.md`,
+`docs/atlas_architecture.md`, `docs/atlas_system_design.md` and
+`docs/atlas_requirements.md`. Do not remove the legacy service or start B.1
+implementation until the next Duck checkpoint and explicit phase authorization.
 
----
+## License
 
-## 📄 License
-
-MIT License — see LICENSE for details.
+MIT License — see `LICENSE`.

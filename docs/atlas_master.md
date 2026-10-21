@@ -1,6 +1,6 @@
 # Atlas - Master Project Reference
-Version: 0.2.0 | Date: 2026-10-14 | Owner repository: Swayamjain1240/Atlas
-Control status: ACCEPTED PRODUCT/STACK DECISIONS, TARGET ARCHITECTURE; NOT A DECLARATION OF IMPLEMENTATION
+Version: 0.2.0 | Date: 2026-10-15 | Owner repository: Swayamjain1240/Atlas
+Control status: ACCEPTED PRODUCT/STACK DECISIONS, NINE-PART ROADMAP, TARGET ARCHITECTURE; IMPLEMENTATION IN PROGRESS
 
 ## 1. Mission and product identity
 Atlas is a local-first AI-powered Personal Life Operating System: a privacy-preserving index of user-approved personal documents, code and browser-history metadata, queried through local embeddings, RAG and Ollama with verifiable citations.
@@ -31,15 +31,17 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - scripts/ - setup/start/test/audit scripts.
 - data/ - local runtime-only SQLite, Chroma, caches; MUST be .gitignored. Prefer OS user-data location.
 
-## 5. Verified repository baseline (observed 2026-10-14)
-- Branch main: 11a6d8102cb0e2fb960ef3a871946101a73c30ac at review time.
-- Existing frontend React/Vite/Tailwind views: Chat, Dashboard, Timeline, Settings, Header, Sidebar and a Three.js particle background.
-- Existing Python FastAPI backend exposes GET /, GET /api/v1/health and GET /api/v1/status, plus auth/rate-limit/security helpers.
-- backend/src/ai/engine.py is a stub: retrieve returns empty list, generate returns warming-up message.
-- backend/src/ingestion and backend/src/storage contain only package initializer files; no functional ingestors or database implementation.
-- Chat calls POST /api/v1/query and Dashboard calls POST /api/v1/ingest, but those routes do not exist in reviewed main.
-- Timeline events are mock data; Dashboard status/memories do not yet represent genuine persisted AI data.
-- Git history says 18 smoke tests passed when committed, but no current executable E2E/inference verification was performed during this documentation update.
+## 5. Verified repository baseline (observed 2026-10-15)
+- Local branch main is at 11a6d8102cb0e2fb960ef3a871946101a73c30ac; verified origin/main is 341f5820f559d382b46b4ccef55970fe1552d343, one documentation-only commit ahead.
+- A complete Git bundle of the pre-A.1 repository history was captured outside the working tree; no source, model, or personal data was deleted.
+- Existing frontend React/Vite/Tailwind views are Chat, Dashboard, Timeline, Settings, Header, Sidebar and a Three.js particle background.
+- The current frontend package has no GSAP dependency, no frontend test script and no tracked lockfile. It loads Google Fonts, which conflicts with the offline runtime requirement.
+- Existing Python FastAPI is the public backend and exposes GET /, GET /api/v1/health, GET /api/v1/status and /openapi.json, plus auth/rate-limit/security helpers.
+- backend/src/ai/engine.py is a stub: initialize only flips a flag, retrieve returns an empty list, generate returns a warming-up message, and stats reports zero documents.
+- backend/src/ingestion and backend/src/storage contain only package initializer files; no functional ingestors, SQLite implementation or ChromaDB adapter exists.
+- Chat calls POST /api/v1/query and Dashboard calls POST /api/v1/ingest, but those routes do not exist in the reviewed implementation.
+- Timeline events are mock data; Dashboard values do not yet represent genuine persisted AI data; the graph renders random particles rather than indexed memories.
+- The available Python smoke suite passes 18 tests; Python compilation passes. Frontend build and local Ollama inference were not executable in the audit environment because dependencies and Ollama were unavailable.
 - Node/Express and aiServices are not implemented in the baseline; these documents specify target changes only.
 
 ## 6. Non-negotiable behavior
@@ -50,34 +52,54 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - Maintain one-viewport authenticated shell, responsive accessibility and optional reduced motion.
 - Avoid changing chosen stack, high-priority requirements or scope without explicit user approval.
 
-## 7. Development phases (dependencies and exit gates)
-### Phase 0 - Baseline recovery / branch safety
-- Confirm clone, clean git status, env examples and dependency installation; archive v0.1 baseline via Git history/tag or named snapshot.
-- Smoke-test existing FastAPI health/status and React build; record failures honestly. No schema/data deletion.
-- Exit: baseline and rollback path documented.
-### Phase 1 - Folder migration and Express foundation
-- Create target folders; add Express app, security, config, routing, common errors, SQLite migration skeleton.
-- Route frontend dev proxy through Express; Python legacy backend remains available until internal AI worker is ready.
-- Exit: React + Express health/status, invalid auth/CORS tests, local-only binding.
-### Phase 2 - Python AI worker and local inference
-- Create aiServices with internal FastAPI auth, Ollama client and embedding model loader; simple mock query works.
-- Record model availability offline after downloads, version and CPU/GPU runtime behavior.
-- Exit: internal-only health, key rejection, embedding dimension = 384 and deterministic mocked Ollama test.
-### Phase 3 - Ingestion and persistent storage
-- Implement explicit consent, file/PDF/DOCX parsers, safe browser-history metadata reader, chunking, SQLite and Chroma IDs, ingestion jobs.
-- Implement safe retries/reconciliation, idempotent re-index and deletions.
-- Exit: restart-safe import, search, stats, traceable sources and cleanup tests.
-### Phase 4 - End-to-end RAG and chat
-- Wire query, retrieval, context assembly, Ollama answer and citations; persist optional chat sessions.
-- Handle empty index, model unavailable, timeouts and prompt-injection attempts.
-- Exit: repeatable React -> Express -> Python -> Chroma -> Ollama query and citation E2E.
-### Phase 5 - Polished accessible UI
-- Add GSAP motion with cleanup/reduced-motion; turn Three.js into real data-driven graph; finish settings, timeline and dashboard.
-- Exit: one-viewport behavior and responsive/mobile accessibility, zero placeholder stats/events.
-### Phase 6 - Hardening and release
-- Perform unit, integration, contract, E2E, security and load tests; run offline smoke tests.
-- Benchmark against published hardware envelope and document deviations. Verify installation/packaging docs.
-- Exit: no critical security/functional failures, backups/restores exercised, release notes and decision log current.
+## 7. Nine-part development roadmap (dependencies and exit gates)
+### Migration A.1 - Existing project audit and legacy cleanup preparation
+- Inspect the complete repository, branch state, dependencies, security controls, tests and runtime prerequisites.
+- Preserve the current implementation and establish a recoverable rollback baseline.
+- Inventory reusable Python, frontend and security modules; identify placeholders, obsolete responsibilities and architecture violations.
+- Synchronize the editable and PDF control documents with the approved nine-part roadmap.
+- Exit: the existing implementation is understood, recoverable and documented; no functional component or user data was deleted.
+
+### Migration A.2 - Legacy migration and folder restructuring
+- Introduce the approved backend/, frontend/, aiServices/, tests/, docs/, scripts/ and runtime-data boundaries in staged form.
+- Prepare the Express backend location and move reusable Python AI modules only after caller and test checks.
+- Keep the legacy public Python backend available until replacement behavior is verified.
+- Exit: the target directory structure is ready without regressions or data loss.
+
+### Rebuild B.1 - Node.js and Express backend
+- Implement the Express gateway, environment validation, authentication, authorization, validation, rate limiting, safe errors, security headers and SQLite migration foundation.
+- Add local-only health and status APIs and preserve stable versioned response contracts.
+- Exit: the secure public backend foundation passes its unit, API, CORS and local-binding checks.
+
+### Rebuild B.2 - Python AI services
+- Implement the private loopback FastAPI worker, internal authentication, Ollama adapter, model loading, Sentence-Transformers embeddings and Express-to-Python communication.
+- Add timeouts, cancellation and safe model/service failure handling.
+- Exit: local inference and 384-dimensional embedding generation work through authenticated internal contracts.
+
+### Rebuild B.3 - Databases and persistent memory
+- Implement SQLite schemas, versioned migrations, ChromaDB collections, stable memory/chunk identifiers, conversation persistence and metadata access.
+- Add cross-store reconciliation, restart recovery, deletion and backup/restore foundations.
+- Exit: stored information survives restart, can be retrieved and can be deleted safely.
+
+### Rebuild B.4 - Document ingestion
+- Implement explicit source consent, bounded file/code/PDF/DOCX/browser-history ingestion, safe path handling, chunking, embedding, indexing, deduplication and re-indexing.
+- Add durable ingestion jobs, progress, retries, quotas and failure reporting.
+- Exit: approved files become reliably searchable memories with traceable provenance.
+
+### Rebuild B.5 - RAG and AI chat
+- Implement authenticated natural-language queries, semantic retrieval, context assembly, grounded Ollama generation, citations, relevance scores, multi-turn persistence, source filters and retrieval-only search.
+- Defend against prompt injection, empty retrieval, model failure, timeout and unbounded-context scenarios.
+- Exit: the complete React -> Express -> Python -> ChromaDB -> Ollama workflow works with verifiable citations.
+
+### Rebuild B.6 - Frontend, Three.js and GSAP
+- Replace placeholder data with real API-backed dashboard, chat, timeline, memory management, settings and knowledge-graph views.
+- Add lifecycle-safe GSAP animation, reduced-motion behavior, WebGL fallback, responsive accessibility, loading states and recoverable errors.
+- Exit: complete frontend behavior works with real application data within the one-viewport contract.
+
+### Rebuild B.7 - Testing, hardening and release
+- Complete unit, integration, API, contract, E2E, regression, security, accessibility, offline, backup/recovery and performance verification.
+- Run dependency and secret scans, remove unused dependencies, validate production configuration and synchronize documentation.
+- Exit: no unresolved critical failures remain and the complete local application passes release acceptance scenarios.
 
 ## 8. Duck checkpoint protocol
 - Trigger word: Duck.
@@ -102,7 +124,39 @@ Success means a user can choose data sources, index them safely, ask source-grou
 - Storage: define backup encryption, OS-specific user-data path and resource quotas before release.
 - Product: email, cloud sync, MCP, autonomous agents, Tauri, team mode and calendar are OUT OF SCOPE until approved.
 
-## 11. Immediate next action
-- The documentation update is docs-only; the code in main remains the existing v0.1 scaffold.
-- Start Phase 0 review and clone verification, then implement Phase 1 Express foundation without deleting reusable Python modules.
-- Verify that the three old v0.1 PDF documents are replaced and a fourth master exists in docs/. Treat these as design baselines, not passing implementation.
+## 11. Part A.1 audit and rollback record
+- Audit started only after explicit owner authorization on 2026-10-15; A.1 was completed before the owner explicitly authorized the staged A.2 migration on 2026-10-21.
+- The pre-A.1 local HEAD, remote HEAD, branch relationship, repository status, source inventory, dependency inventory and available test results were recorded before documentation changes.
+- The existing v0.1 PDFs remain recoverable through Git history and the captured repository bundle; the current working tree contains the verified v0.2 editable documents and architecture/system-design/requirements PDFs from origin/main, plus a regenerated master PDF synchronized from this file.
+- Current verified checks: 18 legacy Python smoke tests passed; Python source compilation passed; pre-commit script and source/Markdown whitespace checks passed. The generic Git whitespace checker reports expected PDF cross-reference padding, so binary PDFs are excluded from that text check.
+- Current verification gaps: frontend build is blocked by missing installed npm dependencies; Ollama, pip-audit and Bandit are unavailable; no E2E, integration, AI inference or performance verification exists yet.
+- A.1 did not authorize deletion, replacement, commit, push, Part A.2, or rebuild implementation without a separate decision and verification. The owner later authorized A.2 with the explicit instruction `duck and start a2`; no commit or push has been performed.
+
+### A.1 migration inventory
+- `frontend/src/App.jsx` and `frontend/src/components/*`: reusable presentation scaffold; preserve incrementally, replace API calls and placeholder data after Express contracts exist.
+- `frontend/src/styles/globals.css`, `frontend/tailwind.config.js` and `frontend/vite.config.js`: reusable visual/dev configuration; review for offline assets, one-viewport behavior and Express proxy migration.
+- `frontend/package.json`: retain React/Vite/Tailwind/Three.js dependencies; add GSAP, test tooling and a lockfile only in an authorized implementation change.
+- `backend/src/config.py`: reusable environment/path concepts; migrate validation and secret handling into the Express configuration boundary without copying temporary-key behavior.
+- `backend/src/security.py`: reusable security requirements and test ideas; review and reimplement authentication, CORS, headers, validation and limits in Express rather than treating the legacy FastAPI middleware as the target.
+- `backend/src/main.py`: legacy public FastAPI application; keep available during migration, then retire public routes only after Express contracts and regression tests pass.
+- `backend/src/api/__init__.py`: legacy response helper; use as a response-format reference and replace with the approved Express response contract.
+- `backend/src/ai/engine.py`: placeholder only; do not treat its empty retrieval or warming-up response as reusable AI functionality.
+- `backend/src/ingestion/*` and `backend/src/storage/*`: package initializers only; no implementation to preserve.
+- `backend/tests/*`: 18-test legacy FastAPI smoke baseline; preserve as evidence, then translate or replace with centralized backend/security tests after the gateway exists.
+- `.env.example`, `.gitignore`, `README.md` and `scripts/pre-commit-hook.sh`: project-control material requiring staged review for target paths, runtime data, reproducible dependencies, startup commands and security automation.
+- `docs/*`: v0.2 architecture, system design, requirements and this master reference are target controls; PDFs and editable Markdown must remain synchronized.
+
+## 12. Part A.2 migration record
+- A.2 was authorized on 2026-10-21 after the Duck checkpoint reviewed the current Git state, rollback bundle, documentation, security gaps and executable evidence.
+- The legacy public FastAPI service and its dependency file moved to `backend/legacy_fastapi/`; its 18-test smoke suite moved to `tests/backend/legacy_fastapi/`.
+- The former `backend/tests/` path remains as a compatibility wrapper so the pre-A.2 test command still exercises the canonical suite.
+- `backend/src/` now reserves the Node.js/Express gateway module groups from the approved target tree; `backend/package.json` records the Node 20+ boundary without implementing B.1.
+- `aiServices/app/` now reserves the private Python worker module groups. The legacy AI engine is a documented placeholder and was not copied or promoted as working functionality.
+- Top-level `tests/` boundaries and the Git-ignored `data/` runtime boundary were introduced. No source, model, personal data or legacy behavior was deleted.
+- Verified A.2 checks: `python -m pytest tests/backend/legacy_fastapi/ -v` passed 18 tests; the compatibility command `python -m pytest backend/tests/ -v` passed 18 tests; Python compilation, the pre-commit script and non-PDF whitespace checks passed.
+- A.2 exit status: complete for the staged directory and legacy-preservation boundary. Express implementation, private AI worker behavior, persistence, ingestion, frontend integration and release gates remain future work in B.1-B.7.
+
+## 13. Immediate next action
+- Preserve the A.2 working tree for review; do not commit or push without explicit authorization.
+- Resolve the recorded runtime prerequisites before claiming frontend or local-inference behavior.
+- Run the next Duck checkpoint before beginning B.1; do not silently advance into rebuild implementation.

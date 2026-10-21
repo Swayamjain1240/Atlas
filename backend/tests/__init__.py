@@ -1,4 +1,1 @@
-"""
-Atlas Tests Package
-Pytest-based test suite.
-"""
+"""Compatibility package for the legacy test command."""
