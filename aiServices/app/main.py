@@ -16,6 +16,7 @@ from aiServices.app.api.responses import (
     worker_http_error_handler,
 )
 from aiServices.app.api.security import require_internal_auth
+from aiServices.app.api.schemas import EmbedRequest, GenerateRequest
 from aiServices.app.config.settings import LOOPBACK_HOSTS, WorkerConfig
 from aiServices.app.services.runtime import WorkerRuntime
 
@@ -48,5 +49,13 @@ def create_app(config: WorkerConfig, runtime: WorkerRuntime | None = None) -> Fa
     @app.get("/internal/health", dependencies=[Depends(internal_auth)])
     async def health(request: Request):
         return success_response(request, worker_runtime.health())
+
+    @app.post("/internal/embed", dependencies=[Depends(internal_auth)])
+    async def embed(payload: EmbedRequest, request: Request):
+        return success_response(request, await worker_runtime.embed(payload.texts))
+
+    @app.post("/internal/generate", dependencies=[Depends(internal_auth)])
+    async def generate(payload: GenerateRequest, request: Request):
+        return success_response(request, await worker_runtime.generate(payload.prompt, payload.system))
 
     return app
