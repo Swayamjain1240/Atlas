@@ -6,13 +6,21 @@ import dotenv from 'dotenv'
 import { loadConfig } from './src/config/env.js'
 import { createDatabase } from './src/database/index.js'
 import { createApp } from './src/app.js'
+import { AiServiceClient } from './src/services/ai-client.js'
 
 const backendDirectory = path.dirname(fileURLToPath(import.meta.url))
 dotenv.config({ path: path.join(backendDirectory, '.env') })
 
 export function startServer({ config = loadConfig(), database = null } = {}) {
   const ownedDatabase = database ?? createDatabase(config)
-  const app = createApp({ config, database: ownedDatabase })
+  const aiClient = config.aiServiceInternalToken
+    ? new AiServiceClient({
+      baseUrl: config.aiServiceUrl,
+      token: config.aiServiceInternalToken,
+      timeoutMs: config.aiServiceTimeoutMs,
+    })
+    : null
+  const app = createApp({ config, database: ownedDatabase, aiClient })
   const server = app.listen(config.port, config.host, () => {
     console.log(`[Atlas] Express gateway listening on ${config.host}:${config.port}`)
   })

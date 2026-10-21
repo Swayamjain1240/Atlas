@@ -12,7 +12,7 @@ const logger = {
   },
 }
 
-export function createApp({ config, database, rateLimiter = null }) {
+export function createApp({ config, database, rateLimiter = null, aiClient = null }) {
   const app = express()
   const limiter = rateLimiter ?? new MemoryRateLimiter({ limit: config.rateLimitPerMinute })
 
@@ -26,7 +26,7 @@ export function createApp({ config, database, rateLimiter = null }) {
   app.use(corsGuard(config))
   app.use(express.json({ limit: config.bodyLimit, strict: true }))
   app.use('/api/v1', limiter.middleware())
-  app.use('/api/v1', apiRouter({ config, database }))
+  app.use('/api/v1', apiRouter({ config, database, aiClient }))
 
   app.use(notFoundHandler)
   app.use(errorHandler)

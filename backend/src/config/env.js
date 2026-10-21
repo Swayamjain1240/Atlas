@@ -23,6 +23,16 @@ const integerValue = (fallback, minimum, maximum) =>
     z.number().int().min(minimum).max(maximum),
   )
 
+const loopbackUrl = (fallback) =>
+  z.string().trim().url().default(fallback).refine((value) => {
+    try {
+      const parsed = new URL(value)
+      return ['http:', 'https:'].includes(parsed.protocol) && LOOPBACK_HOSTS.has(parsed.hostname)
+    } catch {
+      return false
+    }
+  }, 'AI_SERVICE_URL must use an HTTP(S) loopback URL')
+
 const environmentSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   ATLAS_API_KEY: z.string().trim().min(16, 'ATLAS_API_KEY must be at least 16 characters'),
@@ -38,8 +48,9 @@ const environmentSchema = z.object({
   ATLAS_DB_FILE: z.string().trim().default(''),
   ATLAS_LOG_DIR: z.string().trim().default(''),
   ATLAS_CACHE_DIR: z.string().trim().default(''),
-  AI_SERVICE_URL: z.string().trim().url().default('http://127.0.0.1:8750'),
+  AI_SERVICE_URL: loopbackUrl('http://127.0.0.1:8750'),
   AI_SERVICE_INTERNAL_TOKEN: z.string().trim().default(''),
+  AI_SERVICE_TIMEOUT_MS: integerValue(10000, 100, 300000),
 })
 
 export class ConfigError extends Error {
@@ -110,6 +121,7 @@ export function loadConfig(environment = process.env) {
     cacheDir: resolvePath(values.ATLAS_CACHE_DIR, path.join(dataDir, 'cache')),
     aiServiceUrl: values.AI_SERVICE_URL,
     aiServiceInternalToken: values.AI_SERVICE_INTERNAL_TOKEN,
+    aiServiceTimeoutMs: values.AI_SERVICE_TIMEOUT_MS,
     allowedHosts: Object.freeze([...LOOPBACK_HOSTS]),
   })
 }
